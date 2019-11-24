@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
-	private static final Logger logger = LogManager.getLogger(CustomGlobalExceptionHandler.class);
+	private final Logger logger = LogManager.getLogger(this.getClass());
 	
 	@ExceptionHandler(NullPointerException.class)
     public void nullPointer(HttpServletResponse response, Exception ex) throws IOException {

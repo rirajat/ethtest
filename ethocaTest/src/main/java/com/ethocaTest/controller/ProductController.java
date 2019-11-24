@@ -11,14 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ethocaTest.model.Product;
 import com.ethocaTest.service.IProductService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api/product")
+@Api(tags = {"product"})
 public class ProductController {
 
 	@Autowired
 	private IProductService productService;
 	
 	@GetMapping(produces = {"application/json"})
+	@ApiOperation(value = "Get all products.")
 	public List<Product> getAllProducts() {
 		return productService.findAll();
 	}
