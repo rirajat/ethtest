@@ -1,5 +1,6 @@
 package com.ethocaTest.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Description;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,19 +22,12 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = {"order"})
 public class OrderController {
 
-	IOrderService orderService;
-	
-	@PostMapping
-	@ApiOperation(value = "Create a Order.", notes = "Not Impleted.")
-	public Order create(@RequestBody ShoppingCartReq cart) {
-		return null;
-//		return orderService.save(cart);
-	}
+	@Autowired
+	private IOrderService orderService;
 	
 	@GetMapping("/{id}")
 	@ApiOperation(value = "Get a Order.", notes = "Not Impleted.")
 	public Order get(@PathVariable int id) {
-		return null;
-//		return orderService.getOrder(id);
+		return orderService.find(id);
 	}
 }

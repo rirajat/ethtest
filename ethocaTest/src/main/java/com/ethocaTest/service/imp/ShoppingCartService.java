@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ethocaTest.exception.DataFormatException;
 import com.ethocaTest.model.LineItem;
 import com.ethocaTest.model.ShoppingCart;
 import com.ethocaTest.model.dao.LineItemDao;
@@ -29,6 +30,9 @@ public class ShoppingCartService implements IShoppingCart {
 	@Transactional
 	public ShoppingCart create(ShoppingCart cart) {
 		ShoppingCartDao daoObj = new ShoppingCartDao();
+		if (cart.getCreated() == null) {
+			throw new DataFormatException();
+		}
 		daoObj.setCreated(cart.getCreated());
 		daoCart.save(daoObj);
 		return daoObj;
@@ -36,6 +40,9 @@ public class ShoppingCartService implements IShoppingCart {
 
 	@Transactional
 	public ShoppingCart add(int id, LineItem item) {
+		if(item.getProduct() == null) {
+			throw new DataFormatException();
+		}
 		LineItemSaveDao daoObj = new LineItemSaveDao();
 		daoObj.setShoppingcartid(id);
 		daoObj.setQuentity(item.getQuentity());

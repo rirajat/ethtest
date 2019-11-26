@@ -19,9 +19,12 @@ public class LineItemSaveDao {
 	@Column
 	private int quentity;
 	@Column
-	private int shoppingcartid;
+	private Integer shoppingcartid;
 	@Column
 	private int productid;
+	@Column
+	private Integer orderid;
+	
 	public int getId() {
 		return id;
 	}
@@ -34,7 +37,7 @@ public class LineItemSaveDao {
 	public void setQuentity(int quentity) {
 		this.quentity = quentity;
 	}
-	public int getShoppingcartid() {
+	public Integer getShoppingcartid() {
 		return shoppingcartid;
 	}
 	public void setShoppingcartid(int shoppingcartid) {
@@ -46,4 +49,11 @@ public class LineItemSaveDao {
 	public void setProductid(int productid) {
 		this.productid = productid;
 	}
+	public Integer getOrderid() {
+		return orderid;
+	}
+	public void setOrderid(Integer orderid) {
+		this.orderid = orderid;
+	}
+	
 }

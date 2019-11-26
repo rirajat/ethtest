@@ -12,25 +12,27 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.ethocaTest.exception.DataFormatException;
+
 @ControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	private final Logger logger = LogManager.getLogger(this.getClass());
 	
-	@ExceptionHandler(NullPointerException.class)
+	@ExceptionHandler(DataFormatException.class)
     public void nullPointer(HttpServletResponse response, Exception ex) throws IOException {
 		logger.error("Null Pointer Exception",ex);
-		response.sendError(HttpStatus.BAD_REQUEST.value());
+		response.sendError(HttpStatus.BAD_REQUEST.value(),"Request is not correct");
     }
 	
 	@ExceptionHandler(SQLException.class)
     public void sqlException(HttpServletResponse response, Exception ex) throws IOException {
 		logger.error("SQL Exception",ex);
-		response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value());
+		response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Unable to read or wright data.");
     }
 	
 	@ExceptionHandler(Exception.class)
     public void http500(HttpServletResponse response, Exception ex) throws IOException {
 		logger.error("ERROR:",ex);
-		response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value());
+		response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Something went wrong");
     }
 }

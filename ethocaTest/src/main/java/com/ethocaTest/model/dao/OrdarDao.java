@@ -12,18 +12,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.ethocaTest.model.LineItem;
 import com.ethocaTest.model.Order;
 
 @Entity
+@Table(name="[order]")
 public class OrdarDao extends Order{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	@OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
-	@JoinColumn(name = "ShoppingCartId")
+	@JoinColumn(name = "OrderId", updatable = false, insertable = false)
 	private List<LineItemDao> items;
 	@Column
 	private Date created;

@@ -161,6 +161,18 @@ public class ShoppingTest {
 	}
 	
 	@Test
+	public void submitOrder() throws UnirestException {
+		
+		HttpResponse<String> jsonResponse 
+	      = Unirest.post("http://localhost:"+this.randomServerPort+"/api/shopping/2/submit")
+	      .header("Content-Type", "application/json")
+	      .asString();
+
+		assertEquals(201, jsonResponse.getStatus());
+		assertNotNull(jsonResponse.getBody());
+	}
+	
+	@Test
 	public void badRequest() throws UnirestException {
 		
 		String req = "{\r\n" +  

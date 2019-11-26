@@ -27,7 +27,7 @@ public class LineItemDao extends LineItem{
 	@Column
 	private int quentity;
 	@Column
-	private int shoppingcartid;
+	private Integer shoppingcartid;
 	
 	public int getId() {
 		return id;
@@ -58,5 +58,4 @@ public class LineItemDao extends LineItem{
 	public void setShoppingcartid(int shoppingcartid) {
 		this.shoppingcartid = shoppingcartid;
 	}
-	
 }

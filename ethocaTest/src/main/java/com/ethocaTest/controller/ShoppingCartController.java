@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ethocaTest.model.LineItem;
+import com.ethocaTest.model.Order;
 import com.ethocaTest.model.ShoppingCart;
 import com.ethocaTest.model.webRequest.LineItemReq;
 import com.ethocaTest.model.webRequest.ProductReq;
 import com.ethocaTest.model.webRequest.ShoppingCartReq;
+import com.ethocaTest.service.IOrderService;
 import com.ethocaTest.service.IShoppingCart;
 import com.ethocaTest.service.imp.ShoppingCartService;
 
@@ -34,6 +36,9 @@ import io.swagger.annotations.ApiOperation;
 public class ShoppingCartController {
 	@Autowired
 	private IShoppingCart shoppingCart;
+	
+	@Autowired
+	private IOrderService orderService;
 
 	@PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseStatus(HttpStatus.CREATED)
@@ -69,5 +74,13 @@ public class ShoppingCartController {
 			@RequestBody LineItemReq item) {
 		item.setId(itemId);
 		shoppingCart.update(id, item);
+	}
+	
+	@PostMapping("/{id}/submit")
+	@ResponseStatus(HttpStatus.CREATED)
+	@ApiOperation(value = "Create a shopping cart.")
+	public int submit(@PathVariable int id) {
+		Order o = orderService.save(id);
+		return o.getId();
 	}
 }
