@@ -40,7 +40,10 @@ public class ShoppingCartService implements IShoppingCart {
 
 	@Transactional
 	public ShoppingCart add(int id, LineItem item) {
-		if(item.getProduct() == null) {
+		ShoppingCartDao cart = daoCart.find(id);
+		if(item.getProduct() == null || 
+				cart == null ||
+				item.getQuentity() < 0) {
 			throw new DataFormatException();
 		}
 		LineItemSaveDao daoObj = new LineItemSaveDao();
@@ -54,6 +57,12 @@ public class ShoppingCartService implements IShoppingCart {
 	@Transactional
 	public ShoppingCart update(int id, LineItem item) {
 		LineItemSaveDao daoObj = daoItem.find(id, item.getId());
+		ShoppingCartDao cart = daoCart.find(id);
+		if(cart == null ||
+				item.getQuentity() < 0) {
+			throw new DataFormatException();
+		}
+		
 		daoObj.setQuentity(item.getQuentity());
 		daoItem.save(daoObj);
 		return daoCart.find(id);

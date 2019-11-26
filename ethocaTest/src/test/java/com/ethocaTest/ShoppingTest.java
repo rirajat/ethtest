@@ -134,6 +134,23 @@ public class ShoppingTest {
 	}
 	
 	@Test
+	public void addLineItemWithNoCart() throws UnirestException {
+		
+		String req = "{\r\n" + 
+				"            \"productid\": 1,\r\n" + 
+				"            \"quentity\": 10\r\n" + 
+				"        }";
+		
+		HttpResponse<JsonNode> jsonResponse 
+	      = Unirest.put("http://localhost:"+this.randomServerPort+"/api/shopping/40/item")
+	      .header("Content-Type", "application/json")
+	      .body(req)
+	      .asJson();
+
+		assertEquals(400, jsonResponse.getStatus());
+	}
+	
+	@Test
 	public void updateLineItem() throws UnirestException {
 		
 		String req = "{\r\n" + 
@@ -147,6 +164,22 @@ public class ShoppingTest {
 	      .asJson();
 
 		assertEquals(200, jsonResponse.getStatus());
+	}
+	
+	@Test
+	public void updateLineItemWithInProperQuentity() throws UnirestException {
+		
+		String req = "{\r\n" + 
+				"            \"quentity\": -200\r\n" + 
+				"        }";
+		
+		HttpResponse<JsonNode> jsonResponse 
+	      = Unirest.patch("http://localhost:"+this.randomServerPort+"/api/shopping/2/item/1")
+	      .header("Content-Type", "application/json")
+	      .body(req)
+	      .asJson();
+
+		assertEquals(400, jsonResponse.getStatus());
 	}
 	
 	@Test
