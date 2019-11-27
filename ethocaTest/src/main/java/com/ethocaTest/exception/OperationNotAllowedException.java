@@ -6,20 +6,20 @@ public class OperationNotAllowedException extends RuntimeException {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	public OperationNotAllowedException() {
-        super();
-    }
+		super();
+	}
 
-    public OperationNotAllowedException(String message, Throwable cause) {
-        super(message, cause);
-    }
+	public OperationNotAllowedException(String message, Throwable cause) {
+		super(message, cause);
+	}
 
-    public OperationNotAllowedException(String message) {
-        super(message);
-    }
+	public OperationNotAllowedException(String message) {
+		super(message);
+	}
 
-    public OperationNotAllowedException(Throwable cause) {
-    	super(cause);
-    }
+	public OperationNotAllowedException(Throwable cause) {
+		super(cause);
+	}
 }

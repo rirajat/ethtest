@@ -3,7 +3,6 @@ package com.ethocaTest.service.imp;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.ethocaTest.model.ShoppingCart;
 import com.ethocaTest.model.dao.ShoppingCartDao;
 
 public interface ShoppingCartDbService extends JpaRepository<ShoppingCartDao, Integer> {

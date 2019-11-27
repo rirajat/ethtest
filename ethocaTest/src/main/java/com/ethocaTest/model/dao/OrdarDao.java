@@ -18,38 +18,43 @@ import com.ethocaTest.model.LineItem;
 import com.ethocaTest.model.Order;
 
 @Entity
-@Table(name="[order]")
-public class OrdarDao extends Order{
+@Table(name = "[order]")
+public class OrdarDao extends Order {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "OrderId", updatable = false, insertable = false)
 	private List<LineItemDao> items;
 	@Column
 	private Date created;
-	
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public List<LineItem> getItems() {
 		return new ArrayList<LineItem>(items);
 	}
+
 	public void setItems(List<LineItem> items) {
-		this.items=new ArrayList<LineItemDao>();
-		for(int i=0;i<items.size();i++) {
-			this.items.add((LineItemDao)items.get(i));
+		this.items = new ArrayList<LineItemDao>();
+		for (int i = 0; i < items.size(); i++) {
+			this.items.add((LineItemDao) items.get(i));
 		}
 	}
+
 	public Date getCreated() {
 		return created;
 	}
+
 	public void setCreated(Date created) {
 		this.created = created;
 	}
-	
+
 }

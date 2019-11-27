@@ -19,21 +19,19 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @ComponentScan("com.ethocaTest")
 public class SwaggerConfig {
 	@Bean
-    public Docket apiDocket() {
-		return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                        .apis(RequestHandlerSelectors.any())
-                .paths(Predicates.not(PathSelectors.regex("/error")))
-                .build()
-                .apiInfo(apiInfo());
-    }
-	
+	public Docket apiDocket() {
+		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
+				.paths(Predicates.not(PathSelectors.regex("/error")))
+				.build()
+				.apiInfo(apiInfo());
+	}
+
 	private ApiInfo apiInfo() {
-        String description = "REST example";
-        return new ApiInfoBuilder()
-                .title("Ethoca Test")
-                .description(description)
-                .version("1.0")
-                .build();
-    }
+		String description = "REST example";
+		return new ApiInfoBuilder()
+				.title("Ethoca Test")
+				.description(description)
+				.version("1.0")
+				.build();
+	}
 }

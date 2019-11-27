@@ -1,13 +1,10 @@
 package com.ethocaTest.model.webRequest;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-
 import com.ethocaTest.model.Product;
 
-public class ProductReq extends Product{
+public class ProductReq extends Product {
 	private Integer id;
-	
+
 	public int getId() {
 		return id;
 	}
@@ -33,5 +30,5 @@ public class ProductReq extends Product{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 }

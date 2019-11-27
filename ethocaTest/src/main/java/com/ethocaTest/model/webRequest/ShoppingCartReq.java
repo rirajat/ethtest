@@ -6,14 +6,13 @@ import java.util.List;
 
 import com.ethocaTest.model.LineItem;
 import com.ethocaTest.model.ShoppingCart;
-import com.ethocaTest.model.dao.LineItemDao;
 
-public class ShoppingCartReq extends ShoppingCart{
+public class ShoppingCartReq extends ShoppingCart {
 
 	private Integer id;
-	private List<LineItemReq> lineItems; 
+	private List<LineItemReq> lineItems;
 	private Date created;
-	
+
 	@Override
 	public int getId() {
 		// TODO Auto-generated method stub
@@ -22,8 +21,8 @@ public class ShoppingCartReq extends ShoppingCart{
 
 	@Override
 	public void setId(int id) {
-		this.id=id;
-		
+		this.id = id;
+
 	}
 
 	@Override
@@ -33,9 +32,9 @@ public class ShoppingCartReq extends ShoppingCart{
 
 	@Override
 	public void setItems(List<LineItem> items) {
-		this.lineItems=new ArrayList<LineItemReq>();
-		for(int i=0;i<items.size();i++) {
-			this.lineItems.add((LineItemReq)items.get(i));
+		this.lineItems = new ArrayList<LineItemReq>();
+		for (int i = 0; i < items.size(); i++) {
+			this.lineItems.add((LineItemReq) items.get(i));
 		}
 	}
 
@@ -46,8 +45,8 @@ public class ShoppingCartReq extends ShoppingCart{
 
 	@Override
 	public void setCreated(Date created) {
-		this.created=created;
-		
+		this.created = created;
+
 	}
 
 }

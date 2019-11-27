@@ -9,7 +9,7 @@ public abstract class ShoppingCart {
 
 	public abstract void setId(int id);
 
-	public abstract List<LineItem> getItems(); 
+	public abstract List<LineItem> getItems();
 
 	public abstract void setItems(List<LineItem> items);
 

@@ -6,7 +6,7 @@ import java.util.List;
 import com.ethocaTest.model.LineItem;
 import com.ethocaTest.model.Order;
 
-public class OrderReq extends Order{
+public class OrderReq extends Order {
 
 	@Override
 	public int getId() {
@@ -17,7 +17,7 @@ public class OrderReq extends Order{
 	@Override
 	public void setId(int id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class OrderReq extends Order{
 	@Override
 	public void setItems(List<LineItem> items) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class OrderReq extends Order{
 	@Override
 	public void setCreated(Date created) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
