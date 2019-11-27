@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ethocaTest.exception.DataFormatException;
+import com.ethocaTest.exception.OperationNotAllowedException;
 import com.ethocaTest.model.LineItem;
 import com.ethocaTest.model.ShoppingCart;
 import com.ethocaTest.model.dao.LineItemDao;
@@ -69,8 +70,12 @@ public class ShoppingCartService implements IShoppingCart {
 	}
 
 	@Transactional
-	public boolean remove(int id, int itemId) {
-		daoItem.delete(id,itemId);
-		return true;
+	public void remove(int id, int itemId) {
+		LineItemSaveDao item = daoItem.find(id, itemId);
+		if(item!=null) {
+			daoItem.delete(id,itemId);
+		} else {
+			throw new OperationNotAllowedException();
+		}
 	}
 }

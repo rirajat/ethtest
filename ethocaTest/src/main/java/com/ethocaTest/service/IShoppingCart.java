@@ -9,5 +9,5 @@ public interface IShoppingCart {
 	ShoppingCart create(ShoppingCart cart);
 	ShoppingCart add(int id, LineItem item);
 	ShoppingCart update(int id, LineItem item);
-	boolean remove(int id, int itemId);
+	void remove(int id, int itemId);
 }

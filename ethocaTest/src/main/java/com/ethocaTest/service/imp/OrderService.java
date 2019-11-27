@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ethocaTest.exception.OperationNotAllowedException;
 import com.ethocaTest.model.LineItem;
 import com.ethocaTest.model.Order;
 import com.ethocaTest.model.ShoppingCart;
@@ -29,11 +30,14 @@ public class OrderService implements IOrderService {
 	
 	@Transactional
 	public Order save(int cartId) {
+		ShoppingCartDao cart = daoCart.find(cartId);
+		if (cart == null || cart.getItems().size() == 0) {
+			throw new OperationNotAllowedException();
+		}
+		
 		OrdarDao order = new OrdarDao();
 		order.setCreated(new Date());
 		daoOrder.save(order);
-		
-		ShoppingCartDao cart = daoCart.find(cartId);
 		
 		for(LineItem item : cart.getItems()) {
 			LineItemSaveDao saveItem = daoItem.getOne(item.getId());

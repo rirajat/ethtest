@@ -13,15 +13,22 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.ethocaTest.exception.DataFormatException;
+import com.ethocaTest.exception.OperationNotAllowedException;
 
 @ControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	private final Logger logger = LogManager.getLogger(this.getClass());
 	
 	@ExceptionHandler(DataFormatException.class)
-    public void nullPointer(HttpServletResponse response, Exception ex) throws IOException {
+    public void dataFormateErr(HttpServletResponse response, Exception ex) throws IOException {
 		logger.error("Null Pointer Exception",ex);
 		response.sendError(HttpStatus.BAD_REQUEST.value(),"Request is not correct");
+    }
+	
+	@ExceptionHandler(OperationNotAllowedException.class)
+    public void operationErr(HttpServletResponse response, Exception ex) throws IOException {
+		logger.error("Null Pointer Exception",ex);
+		response.sendError(HttpStatus.FORBIDDEN.value(),"Invalid operation");
     }
 	
 	@ExceptionHandler(SQLException.class)

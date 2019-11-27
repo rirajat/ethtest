@@ -194,6 +194,28 @@ public class ShoppingTest {
 	}
 	
 	@Test
+	public void deleteLineItemInWrongShoppingCart() throws UnirestException {
+		
+		HttpResponse<JsonNode> jsonResponse 
+	      = Unirest.delete("http://localhost:"+this.randomServerPort+"/api/shopping/1/item/2")
+	      .header("Content-Type", "application/json")
+	      .asJson();
+
+		assertEquals(403, jsonResponse.getStatus());
+	}
+	
+	@Test
+	public void deleteInvalidLineItem() throws UnirestException {
+		
+		HttpResponse<JsonNode> jsonResponse 
+	      = Unirest.delete("http://localhost:"+this.randomServerPort+"/api/shopping/2/item/20")
+	      .header("Content-Type", "application/json")
+	      .asJson();
+
+		assertEquals(403, jsonResponse.getStatus());
+	}
+	
+	@Test
 	public void submitOrder() throws UnirestException {
 		
 		HttpResponse<String> jsonResponse 
@@ -203,6 +225,28 @@ public class ShoppingTest {
 
 		assertEquals(201, jsonResponse.getStatus());
 		assertNotNull(jsonResponse.getBody());
+	}
+	
+	@Test
+	public void submitOrderForbiden() throws UnirestException {
+		
+		HttpResponse<String> jsonResponse 
+	      = Unirest.post("http://localhost:"+this.randomServerPort+"/api/shopping/22/submit")
+	      .header("Content-Type", "application/json")
+	      .asString();
+
+		assertEquals(403, jsonResponse.getStatus());
+	}
+	
+	@Test
+	public void submitOrderWithNoItems() throws UnirestException {
+		
+		HttpResponse<String> jsonResponse 
+	      = Unirest.post("http://localhost:"+this.randomServerPort+"/api/shopping/1/submit")
+	      .header("Content-Type", "application/json")
+	      .asString();
+
+		assertEquals(403, jsonResponse.getStatus());
 	}
 	
 	@Test
